@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Projeto_Event_Plus</name>
+    </assembly>
+    <members>
+        <member name="P:Projeto_Event_Plus.Domains.Evento.IdTipoEvento">
+            <summary>
+            Rerencia as demais tabelas
+            </summary>
+        </member>
+        <member name="T:Projeto_Event_Plus.Migrations.event_plus">
+            <inheritdoc />
+        </member>
+        <member name="M:Projeto_Event_Plus.Migrations.event_plus.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Projeto_Event_Plus.Migrations.event_plus.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Projeto_Event_Plus.Migrations.event_plus.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
