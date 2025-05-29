@@ -11,8 +11,7 @@ const CadastroEventos = () => {
     const [tipoEvento, setTipoEvento] = useState("");
     const [descricao, setDescricao] = useState("");
     const [instituicao, setInstuicao] = useState("1A964BD7-0DA8-420F-98D7-32925563FDED");
-
-
+   
     return (
         <>
             <Header />
@@ -43,6 +42,7 @@ const CadastroEventos = () => {
                 //quinto input 
                 setValorText={setDescricao}
                 valorText={descricao}
+
             />
 
             <Lista
