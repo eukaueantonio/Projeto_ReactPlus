@@ -35,6 +35,44 @@
     gap: 25px;
 }
 
+.campo_cadTipoEvento select {
+    display: flex;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 300px;
+    color: gray;
+    border-bottom: 2px solid gray;
+    margin-bottom: 30px;
+}
+
+.campo_Instituiçao select {
+    display: flex;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 300px;
+    color: gray;
+    border-bottom: 2px solid gray;
+    margin-bottom: 30px;
+    outline: none;
+
+}
+
+.div_descricao textarea {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 300px;
+    color: gray;
+    border-bottom: 2px solid gray;
+    margin-bottom: 30px;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+}
+
+
 
 .campo_cad_nome input,
 .campo_cad_genero select {
@@ -43,6 +81,8 @@
     width: 300px;
     height: 30px;
     margin-top: 7px;
+    color: gray;
+    border-color: 30px black;
 }
 
 .campo_cad_nome input,
@@ -56,9 +96,15 @@
     outline: none;
 }
 
-.campo_cad_genero {
-    margin-bottom: 30PX;
+.div_data input {
+    display: flex;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    width: 300px;
     color: gray;
+    margin-bottom: 30px;
 }
 
 .campo_preen {

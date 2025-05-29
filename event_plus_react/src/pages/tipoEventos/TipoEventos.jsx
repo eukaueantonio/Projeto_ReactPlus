@@ -37,7 +37,7 @@ const TipoEventos = () => {
 
             try {
                 await api.post("tipoEvento", { tituloTipoEvento: tipoEvento });
-                alertar("success", "sucesso! Cadastro realizado")
+                alertar("success", "Sucesso! Cadastro realizado")
                 setTipoEvento("");
 
             } catch (error) {
@@ -91,7 +91,7 @@ const TipoEventos = () => {
             input: "text",
             confirmButtonColor: '#B51D44',
             cancelButtonColor: '#000000',
-            inputLabel: "Novo tipo de evento",
+            inputLabel: "Novo tipo de evento:",
             inputValue: tiposEventos.tituloTipoEvento,
             showCancelButton: true,
             inputValidator: (value) => {
@@ -128,6 +128,7 @@ const TipoEventos = () => {
                 funcCadastroTipoEvento={cadastrarTipoEvento}
                 valorInput={tipoEvento}
                 setValorInput={setTipoEvento}
+                visivel="none"
             />
             <Lista
                 tituloLista="LISTA TIPO DE EVENTOS"

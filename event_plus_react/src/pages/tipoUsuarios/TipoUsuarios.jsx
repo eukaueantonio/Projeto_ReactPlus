@@ -65,7 +65,7 @@ const TipoUsuarios = () => {
             input: "text",
             confirmButtonColor: '#B51D44',
             cancelButtonColor: '#000000',
-            inputLabel: "Novo tipo de usuário",
+            inputLabel: "Novo tipo de usuário:",
             inputValue: tiposUsuarios.tituloTipoUsuario,
             showCancelButton: true,
             inputValidator: (value) => {
@@ -127,6 +127,7 @@ const TipoUsuarios = () => {
                 funcCadastroTipoEvento={cadastrarTipoUsuario}
                 valorInput={tipoUsuario}
                 setValorInput={setTipoUsuario}
+                visivel="none"
             />
              <Lista 
                    tituloLista ="LISTA TIPO DE USUÁRIO"
