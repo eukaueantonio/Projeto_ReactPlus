@@ -14,10 +14,12 @@ namespace Projeto_Event_Plus.Controllers
     {
         private readonly IComentarioRepository _comentarioRepository;
         private readonly ContentSafetyClient _contentSafetyClient;
-        public ComentarioController(ContentSafetyClient contentSafetyClient, IComentarioRepository comentarioRepository)
+        private readonly Context _contexto;
+        public ComentarioController(ContentSafetyClient contentSafetyClient, IComentarioRepository comentarioRepository, Context contexto)
         {
             _comentarioRepository = comentarioRepository;
             _contentSafetyClient = contentSafetyClient;
+            _contexto = contexto;
         }
 
         //-----------------------------------------------------
@@ -27,6 +29,17 @@ namespace Projeto_Event_Plus.Controllers
         {
             try
             {
+
+                Evento? eventoBuscado = _contexto.Evento.FirstOrDefault(e => e.IdEvento == comentario.IdEvento);
+                if(eventoBuscado == null)
+                {
+                    return NotFound("Evento não encontrado!");
+                }
+                if (eventoBuscado.DataEvento >= DateTime.UtcNow)
+                {
+                    return BadRequest("Não é possível comentar um evento que ainda não aconteceu");
+                }
+
                 if(string.IsNullOrEmpty(comentario.Descricao))
                 {
                     return BadRequest("O texto a ser moderado não pode estar vazio!");

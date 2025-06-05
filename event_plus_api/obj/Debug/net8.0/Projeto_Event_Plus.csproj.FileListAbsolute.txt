@@ -933,3 +933,4 @@ C:\Users\57104262881\Desktop\Event+\event_plus_api\obj\Debug\net8.0\Projeto_Even
 C:\Users\57104262881\Desktop\Event+\event_plus_api\obj\Debug\net8.0\Projeto_Event_Plus.pdb
 C:\Users\57104262881\Desktop\Event+\event_plus_api\obj\Debug\net8.0\Projeto_Event_Plus.genruntimeconfig.cache
 C:\Users\57104262881\Desktop\Event+\event_plus_api\obj\Debug\net8.0\ref\Projeto_Event_Plus.dll
+C:\Users\57104262881\Desktop\Event+\event_plus_api\obj\Debug\net8.0\Projeto_Event_Plus.sourcelink.json

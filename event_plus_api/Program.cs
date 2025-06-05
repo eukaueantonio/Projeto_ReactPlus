@@ -11,17 +11,13 @@ using Projeto_Event_Plus.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//// Configuração do Azure Content Safety.
-//var endpoint = builder.Configuration["https://event-plus-ia.cognitiveservices.azure.com/"];
-//var apiKey = builder.Configuration["1QuVglAkDqag4IQzcV9GY5mvUS2DysE84luuM9CIzKMINUdUseawJQQJ99BEACYeBjFXJ3w3AAAEACOGBTYN"];
+// Configuração do Azure Content Safety
+var endpoint = "https://event-plus-ia.cognitiveservices.azure.com/";
+var apiKey = "1QuVglAkDqag4IQzcV9GY5mvUS2DysE84luuM9CIzKMINUdUseawJQQJ99BEACYeBjFXJ3w3AAAEACOGBTYN";
 
-//if(string.IsNullOrEmpty(endpoint) || string.IsNullOrEmpty(apiKey))
-//    {
-//    throw new InvalidOperationException("Azure Content Safety: Endpoint ou API Key não foram configurados.");
-//    }
+var client = new ContentSafetyClient(new Uri(endpoint), new AzureKeyCredential(apiKey));
+builder.Services.AddSingleton(client);
 
-//var client = new ContentSafetyClient(new Uri(endpoint), new AzureKeyCredential(apiKey));
-//builder.Services.AddSingleton(client);
 
 builder.Services // Acessa a coleção de serviços da aplicação (Dependency Injection)
     .AddControllers() // Adiciona suporte a controladores na API (MVC ou Web API)
