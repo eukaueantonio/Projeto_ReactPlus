@@ -14,7 +14,7 @@ const Modal = (props) => {
 
     async function listarComentarios() {
         try {
-            await api.get(`ComentariosEventos/ListarSomenteExibe?id=${props.idEvento}`);
+            const resposta = await api.get(`Comentario/ListarSomenteExibe?id=${props.idEvento}`);
             setComentarios(resposta.data);
         } catch (error) {
             console.log(error);

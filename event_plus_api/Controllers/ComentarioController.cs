@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Azure.AI.ContentSafety;
 using Azure;
 using Projeto_Event_Plus.Repositories;
+using Projeto_Event_Plus.Context;
 
 namespace Projeto_Event_Plus.Controllers
 {
@@ -14,8 +15,8 @@ namespace Projeto_Event_Plus.Controllers
     {
         private readonly IComentarioRepository _comentarioRepository;
         private readonly ContentSafetyClient _contentSafetyClient;
-        private readonly Context _contexto;
-        public ComentarioController(ContentSafetyClient contentSafetyClient, IComentarioRepository comentarioRepository, Context contexto)
+        private readonly EventPlus_Context _contexto;
+        public ComentarioController(ContentSafetyClient contentSafetyClient, IComentarioRepository comentarioRepository, EventPlus_Context contexto)
         {
             _comentarioRepository = comentarioRepository;
             _contentSafetyClient = contentSafetyClient;
@@ -30,7 +31,7 @@ namespace Projeto_Event_Plus.Controllers
             try
             {
 
-                Evento? eventoBuscado = _contexto.Evento.FirstOrDefault(e => e.IdEvento == comentario.IdEvento);
+                Evento? eventoBuscado = _contexto.Eventos.FirstOrDefault(e => e.IdEvento == comentario.IdEvento);
                 if(eventoBuscado == null)
                 {
                     return NotFound("Evento não encontrado!");
@@ -69,5 +70,63 @@ namespace Projeto_Event_Plus.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _comentarioRepository.Deletar(id);
+
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("ListarSomenteExibe")]
+        public IActionResult GetExibe(Guid id)
+        {
+            try
+            {
+                return Ok(_comentarioRepository.ListarSomenteExibe(id));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Get(Guid id)
+        {
+            try
+            {
+                return Ok(_comentarioRepository.Listar(id));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet("BuscarPorIdUsuario")]
+        public IActionResult GetByIdUser(Guid idUsuario, Guid idEvento)
+        {
+            try
+            {
+                return Ok(_comentarioRepository.BuscarPorIdUsuario(idUsuario, idEvento));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
