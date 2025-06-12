@@ -5,6 +5,6 @@ export const userDecodeToken = (token) =>{
     return{
         idUsuario: decodificado.jti,
         token: token,
-        tipoUsuario: decodificado ["Tipo Do Usuário."]
+        tipoUsuario: decodificado ["Tipo Do Usuário"]
     }
 }

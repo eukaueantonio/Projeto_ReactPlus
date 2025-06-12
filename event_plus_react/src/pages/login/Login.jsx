@@ -8,12 +8,15 @@ import Swal from 'sweetalert2';
 import { userDecodeToken } from "../../auth/Auth.js";
 import secureLocalStorage from "react-secure-storage";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../contexts/AuthContext.js"
 
 const Login = () => {
 
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const navigate = useNavigate();
+
+    const {setUsuario} = useAuth();
 
     function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
@@ -48,7 +51,13 @@ const Login = () => {
 
             if (token) {
                 const tokenDecodificado = userDecodeToken(token);
+
+                setUsuario(tokenDecodificado);
+
                 secureLocalStorage.setItem("tokenLogin", JSON.stringify(tokenDecodificado));
+
+                // console.log("O tipo de usuario é assim:");
+                // console.log(tokenDecodificado.tipoUsuario);
 
                 if (tokenDecodificado.tipoUsuario === "Comum") {
                     navigate("/Eventos");
@@ -79,12 +88,12 @@ const Login = () => {
                     <div className="campos_login">
                         <div className="campo_imput">
                             <label htmlFor="email"></label>
-                            <input className="email" type="email" name="email" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input className="email" type="email" name="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                         </div>
                         <div className="campo_imput">
                             <label htmlFor="senha"></label>
-                            <input type="password" name="senha" placeholder="Password" value={senha} onChange={(e) => setSenha(e.target.value)} />
+                            <input type="password" name="senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} />
 
                         </div>
                     </div>

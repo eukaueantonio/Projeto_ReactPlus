@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Event_Plus.Migrations
 {
     /// <inheritdoc />
-    public partial class event_plus : Migration
+    public partial class DB_V2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -178,8 +178,7 @@ namespace Projeto_Event_Plus.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_PresencaEvento_IdEvento",
                 table: "PresencaEvento",
-                column: "IdEvento",
-                unique: true);
+                column: "IdEvento");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PresencaEvento_IdUsuario",

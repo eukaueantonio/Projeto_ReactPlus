@@ -1,4 +1,5 @@
-﻿using Projeto_Event_Plus.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using Projeto_Event_Plus.Context;
 using Projeto_Event_Plus.Domains;
 using Projeto_Event_Plus.Interfaces;
 
@@ -123,12 +124,36 @@ namespace Projeto_Event_Plus.Repositories
         {
             try
             {
-                List<Evento> listaEvento = _context.Eventos.Where(p => p.IdEvento == id).ToList();
-                return listaEvento;
+                return _context.Eventos
+                    .Include(e => e.PresencaEventos)
+                    .Where(e => e.PresencaEventos!.Any(p => p.IdUsuario == id && p.Situacao == true))
+                    .Select(e => new Evento
+                    {
+                        IdEvento = e.IdEvento,
+                        NomeEvento = e.NomeEvento,
+                        Descricao = e.Descricao,
+                        DataEvento = e.DataEvento,
+                        IdTipoEvento = e.IdTipoEvento,
+                        TiposEvento = new TipoEvento
+                        {
+                            IdTipoEvento = e.IdTipoEvento,
+                            TituloTipoEvento = e.TiposEvento!.TituloTipoEvento
+                        },
+                        IdInstituicao = e.IdInstituicao,
+                        Instituicao = new Instituicao
+                        {
+                            IdInstituicao = e.IdInstituicao,
+                            NomeFantasia = e.Instituicao!.NomeFantasia
+                        },
+                        // Aqui você monta uma lista com as presenças válidas (opcional)
+                        PresencaEventos = e.PresencaEventos
+                            .Where(p => p.IdUsuario == id && p.Situacao == true)
+                            .ToList()
+                    })
+                    .ToList();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

@@ -12,8 +12,8 @@ using Projeto_Event_Plus.Context;
 namespace Projeto_Event_Plus.Migrations
 {
     [DbContext(typeof(EventPlus_Context))]
-    [Migration("20250522133945_event_plus")]
-    partial class event_plus
+    [Migration("20250612163319_DB_V2")]
+    partial class DB_V2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,8 +129,7 @@ namespace Projeto_Event_Plus.Migrations
 
                     b.HasKey("IdPresencaEvento");
 
-                    b.HasIndex("IdEvento")
-                        .IsUnique();
+                    b.HasIndex("IdEvento");
 
                     b.HasIndex("IdUsuario");
 
@@ -236,8 +235,8 @@ namespace Projeto_Event_Plus.Migrations
             modelBuilder.Entity("Projeto_Event_Plus.Domains.PresencaEvento", b =>
                 {
                     b.HasOne("Projeto_Event_Plus.Domains.Evento", "Eventos")
-                        .WithOne("PresencaEventos")
-                        .HasForeignKey("Projeto_Event_Plus.Domains.PresencaEvento", "IdEvento")
+                        .WithMany("PresencaEventos")
+                        .HasForeignKey("IdEvento")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

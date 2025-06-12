@@ -9,16 +9,16 @@
             Rerencia as demais tabelas
             </summary>
         </member>
-        <member name="T:Projeto_Event_Plus.Migrations.event_plus">
+        <member name="T:Projeto_Event_Plus.Migrations.DB_V2">
             <inheritdoc />
         </member>
-        <member name="M:Projeto_Event_Plus.Migrations.event_plus.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Projeto_Event_Plus.Migrations.DB_V2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Projeto_Event_Plus.Migrations.event_plus.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:Projeto_Event_Plus.Migrations.DB_V2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Projeto_Event_Plus.Migrations.event_plus.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:Projeto_Event_Plus.Migrations.DB_V2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
     </members>

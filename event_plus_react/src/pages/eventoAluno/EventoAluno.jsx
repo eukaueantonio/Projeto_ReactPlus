@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import Modal from "../../components/modal/Modal";
 import Toggle from "../../components/toggle/Toggle";
 import Swal from "sweetalert2";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 
@@ -21,7 +22,8 @@ const EventoAluno = () => {
     //descricao, idEvento, etc...
     const [modalAberto, setModalAberto] = useState(false);
     const [filtroData, setFiltroData] = useState(["todos"]);
-    const [usuarioId, setUsuarioId] = useState("D479E299-39BA-45CD-C9C0-08DDA4391B48");
+    const { usuario } = useAuth();
+    // const [usuarioId, setUsuarioId] = useState("D479E299-39BA-45CD-C9C0-08DDA4391B48");
 
     async function listarEventos() {
         try {
@@ -29,7 +31,7 @@ const EventoAluno = () => {
             const eventoListado = await api.get("Evento");
             const todosOsEventos = eventoListado.data;
 
-            const respostaPresenca = await api.get("PresencasEventos/ListarMinhas/" + usuarioId)
+            const respostaPresenca = await api.get("PresencasEventos/ListarMinhas/" + usuario.idUsuario)
             const minhasPresencas = respostaPresenca.data;
 
             const eventosComPresencas = todosOsEventos.map((atualEvento) => {
@@ -87,7 +89,7 @@ const EventoAluno = () => {
                 Swal.fire('Confirmado!', 'Sua presença foi confirmada.', 'success')
             } else {
                 //cadastrar uma nova presenca 
-                await api.post("PresencasEventos", { situacao: true, idUsuario: usuarioId, idEvento: idEvento });
+                await api.post("PresencasEventos", { situacao: true, idUsuario: usuario.idUsuario, idEvento: idEvento });
                 Swal.fire('Confirmado!', 'Sua presença foi confirmada.', 'success')
 
             }
@@ -113,6 +115,7 @@ const EventoAluno = () => {
 
     useEffect(() => {
         listarEventos()
+        // console.log(usuario)
     }, [])
 
     return (

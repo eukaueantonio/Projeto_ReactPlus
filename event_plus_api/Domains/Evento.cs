@@ -32,7 +32,7 @@ namespace Projeto_Event_Plus.Domains
         [ForeignKey("IdInstituicao")]
         public Instituicao? Instituicao { set; get; }
 
-        public PresencaEvento? PresencaEventos { get; set; }
+        public ICollection<PresencaEvento>? PresencaEventos { get; set; }
 
 
     }
