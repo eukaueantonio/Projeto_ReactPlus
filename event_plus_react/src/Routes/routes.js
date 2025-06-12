@@ -6,22 +6,20 @@ import CadastroEventos from "../pages/cadastroEventos/CadastroEventos";
 import EventoAluno from "../pages/eventoAluno/EventoAluno";
 import { useAuth } from "../contexts/AuthContext";
 
-// Componente de rota privada
-const Privado = ({ item: Item, tipoPermitido }) => {
-    const { usuario } = useAuth();
+const Privado = (props) => {
+    const {usuario} = useAuth();
+    // toke. idUsuario, tipoUsuario
 
-    // Se não estiver autenticado, redireciona para o login
-    if (!usuario) {
-        return <Navigate to="/" />;
+    // Se nao estiver autenticado, manda para login
+    if(!usuario) {
+        return <Navigate to="/"/>;
     }
-
-    // Se o tipo de usuário não for o permitido, redireciona para o login
-    if (usuario.tipoUsuario !== tipoPermitido) {
-        return <Navigate to="/" />;
-    }
-
-    // Senão, renderiza o componente passado
-    return <Item />;
+    // Se o tipo do usuario nao for permitido, bloqueia
+    if(usuario.tipoUsuario !== props.tipoPermitido){ 
+        // ir para a tela de nao encontrado!
+    return <Navigate to="/"/>;}
+    // senao, renderiza o componente passado
+    return <props.item/> 
 };
 
 const Rotas = () => {
